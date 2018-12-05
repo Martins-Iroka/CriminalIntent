@@ -45,7 +45,7 @@ public class DatePickerFragment extends DialogFragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.date_picker, null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_date_picker, null);
 
         mDatePicker = view.findViewById(R.id.date_picker);
         mDatePicker.init(year, month, day, null);

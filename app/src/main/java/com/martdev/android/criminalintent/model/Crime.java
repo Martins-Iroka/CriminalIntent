@@ -7,12 +7,14 @@ public class Crime {
     private UUID mId;
     private String mTitle;
     private Date mDate;
+    private Date mTime;
     private boolean mSolved;
     private boolean mRequirePolice; //chapter 8 challenge
 
     public Crime() {
         mId = UUID.randomUUID();
         mDate = new Date();
+        mTime = new Date();
     }
 
     public UUID getId() {
@@ -49,5 +51,13 @@ public class Crime {
 
     public void setRequirePolice(boolean requirePolice) {
         mRequirePolice = requirePolice;
+    }
+
+    public Date getTime() {
+        return mTime;
+    }
+
+    public void setTime(Date time) {
+        mTime = time;
     }
 }
