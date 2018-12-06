@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import com.martdev.android.criminalintent.DatePickerActivity;
 import com.martdev.android.criminalintent.R;
 import com.martdev.android.criminalintent.model.Crime;
 import com.martdev.android.criminalintent.model.CrimeLab;
@@ -31,7 +32,6 @@ import static android.widget.CompoundButton.*;
 
 public class CrimeFragment extends Fragment {
     private static final String ARG_CRIME_ID = "crime_id";
-    private static final String DATE_DIALOG = "DialogDate";
     private static final String TIME_DIALOG = "DialogTime";
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_TIME = 1;
@@ -86,10 +86,8 @@ public class CrimeFragment extends Fragment {
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager manager = getFragmentManager();
-                DatePickerFragment dialog = DatePickerFragment.newInstance(mCrime.getDate());
-                dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
-                dialog.show(manager, DATE_DIALOG);
+                Intent intent = DatePickerActivity.newIntent(getActivity(), mCrime.getDate());
+                startActivityForResult(intent, REQUEST_DATE);
             }
         });
 
@@ -124,7 +122,7 @@ public class CrimeFragment extends Fragment {
         }
 
         if (requestCode == REQUEST_DATE) {
-            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            Date date = DatePickerFragment.setDate(data);
             mCrime.setDate(date);
             updateDate();
         }
