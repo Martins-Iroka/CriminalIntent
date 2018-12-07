@@ -1,6 +1,6 @@
 # CriminalIntent
 
-The second app from the book; Android Programming:TheBigNerdRanch 3rd edition
+The second app from the book; Android Programming:TheBigNerdRanch Guide 3rd edition
 
 The app records details of crimes in an office or organization.
 
