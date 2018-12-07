@@ -1,5 +1,6 @@
 package com.martdev.android.criminalintent.model;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 
 import java.util.ArrayList;
@@ -24,13 +25,14 @@ public class CrimeLab {
 
     private CrimeLab(Context context) {
         mCrimes = new LinkedHashMap<>();//chapter 10b challenge
-        for (int i = 0; i < 100; i++) {
-            Crime crime = new Crime();
-            crime.setTitle("Crime #" + i);
-            crime.setSolved(i % 2 == 0);
-            crime.setRequirePolice(i % 3 == 0); //chapter 8 challenge
-            mCrimes.put(crime.getId(), crime);//chapter 10b challenge
-        }
+    }
+
+    public void addCrime(Crime crime) {
+        mCrimes.put(crime.getId(), crime);
+    }
+
+    public void deleteCrime(UUID crimeId) {
+        mCrimes.remove(crimeId);
     }
 
     public List<Crime> getCrimes() {
