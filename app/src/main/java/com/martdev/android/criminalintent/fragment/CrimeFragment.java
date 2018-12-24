@@ -265,9 +265,9 @@ public class CrimeFragment extends Fragment {
     private String getCrimeReport() {
         String solvedCrime;
         if (mCrime.isSolved()) {
-            solvedCrime = getString(R.string.crime_report_unsolved);
-        } else {
             solvedCrime = getString(R.string.crime_report_solved);
+        } else {
+            solvedCrime = getString(R.string.crime_report_unsolved);
         }
 
         String dateString = "EEE MMM dd";
@@ -340,6 +340,8 @@ public class CrimeFragment extends Fragment {
                 if (hasContactPermission()) {
                     updateSuspectNumber();
                 }
+                default:
+                    super.onRequestPermissionsResult(requestCode, permission, grantResults);
         }
     }
 }
