@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.martdev.android.criminalintent">
 
+    <uses-feature android:name="android.hardware.camera2"
+        android:required="false"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
@@ -20,6 +22,15 @@
         </activity>
         <activity android:name=".CrimePagerActivity"/>
         <activity android:name=".DatePickerActivity"/>
+        <provider
+            android:authorities="com.martdev.android.criminalintent.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/files"/>
+        </provider>
     </application>
 
 </manifest>
