@@ -19,7 +19,8 @@ import com.martdev.android.criminalintent.model.CrimeLab;
 import java.util.List;
 import java.util.UUID;
 
-public class CrimePagerActivity extends AppCompatActivity {
+public class CrimePagerActivity extends AppCompatActivity
+        implements CrimeFragment.Callbacks {
     private static final String EXTRA_CRIME_ID = "com.martdev.android.criminalintent.crime_id";
 
     private ViewPager mViewPager;
@@ -79,6 +80,7 @@ public class CrimePagerActivity extends AppCompatActivity {
         });
     }
 
+    //chapter 11b challenge
     private void moveToLastCrime() {
         mLastCrime = findViewById(R.id.last_crime);
         mLastCrime.setOnClickListener(new View.OnClickListener() {
@@ -89,5 +91,10 @@ public class CrimePagerActivity extends AppCompatActivity {
                 mFirstCrime.setEnabled(true);
             }
         });
+    }
+
+    @Override
+    public void onCrimeUpdated(Crime crime) {
+
     }
 }

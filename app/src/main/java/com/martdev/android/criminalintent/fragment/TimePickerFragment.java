@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -46,16 +47,28 @@ public class TimePickerFragment extends DialogFragment {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_time_picker, null);
 
         mTimePicker = view.findViewById(R.id.crime_time_picker);
-        mTimePicker.setCurrentHour(hour);
-        mTimePicker.setCurrentMinute(minute);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mTimePicker.setHour(hour);
+            mTimePicker.setMinute(minute);
+        } else {
+            mTimePicker.setCurrentHour(hour);
+            mTimePicker.setCurrentMinute(minute);
+        }
 
         return new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        int hour = mTimePicker.getCurrentHour();
-                        int minute = mTimePicker.getCurrentMinute();
+                        int hour;
+                        int minute;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            hour = mTimePicker.getHour();
+                            minute = mTimePicker.getMinute();
+                        } else {
+                            hour = mTimePicker.getCurrentHour();
+                            minute = mTimePicker.getCurrentMinute();
+                        }
 
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(time);
